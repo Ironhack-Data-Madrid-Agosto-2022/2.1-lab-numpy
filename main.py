@@ -31,8 +31,7 @@ a.size == b.size
 
 
 #8. Are you able to add a and b? Why or why not?
-np.add(a,b)
-pass
+#np.add(a,b)
 #No permite sumar matrices de dimensiones diferentes
 
 
