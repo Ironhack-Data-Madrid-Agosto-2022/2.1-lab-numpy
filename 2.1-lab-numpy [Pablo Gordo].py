@@ -175,3 +175,31 @@ array([[[ 'D',  'D',  'D',  'B',  'D'],
         [ 'B',  'D',   'A',  'D', 'D']]])
 Again, you don't need Numpy in this question.
 """
+
+g = np. empty((2, 3, 5), str)
+
+a=0
+b=0
+c=0
+
+for x in d:
+    for y in x:
+        for z in y:
+            if z>d_min and z<d_mean:
+                g[a][b][c]="B"
+            if z>d_mean and z<d_max:
+                g[a][b][c]="D"
+            if z==d_mean:
+                g[a][b][c]="C"
+            if z==d_min:
+                g[a][b][c]="A"
+            if z==d_max:
+                g[a][b][c]="E"
+            
+            c+=1
+        c=0
+        b+=1
+    b=0
+    a+=1  
+
+print(g)
