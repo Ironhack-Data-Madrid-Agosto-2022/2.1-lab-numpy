@@ -1,62 +1,153 @@
 #1. Import the NUMPY package under the name np.
-
+import numpy as np
 
 
 #2. Print the NUMPY version and the configuration.
-
+print(np.version.version)
+'''
+1.21.5
+'''
 
 
 #3. Generate a 2x3x5 3-dimensional array with random values. Assign the array to variable "a"
 # Challenge: there are at least three easy ways that use numpy to generate random arrays. How many ways can you find?
+a = np.random.random((2,3,5))
+'''
+a = np.random.rand(2,3,5)
+a = np.random.randint(10, size = (2,3,5))
+'''
 
 
 
 #4. Print a.
+print(a)
+'''
+[[[0.96937417 0.97774437 0.45299931 0.74408653 0.24553292]
+  [0.48748733 0.02992367 0.38285172 0.90007137 0.93815114]
+  [0.79844051 0.74894665 0.60078667 0.15044194 0.68809614]]
 
-
+ [[0.81261483 0.13692769 0.63610715 0.19670562 0.04257075]
+  [0.75635792 0.9921996  0.89381309 0.37679424 0.60478684]
+  [0.90199869 0.04903972 0.50594422 0.67837833 0.47586028]]]
+'''
 
 #5. Create a 5x2x3 3-dimensional array with all values equaling 1.
 #Assign the array to variable "b"
-
+b = np.ones((5,2,3))
 
 
 #6. Print b.
+print(b)
+'''
+[[[1. 1. 1.]
+  [1. 1. 1.]]
+
+ [[1. 1. 1.]
+  [1. 1. 1.]]
+
+ [[1. 1. 1.]
+  [1. 1. 1.]]
+
+ [[1. 1. 1.]
+  [1. 1. 1.]]
+
+ [[1. 1. 1.]
+  [1. 1. 1.]]]
+'''
 
 
 
 #7. Do a and b have the same size? How do you prove that in Python code?
-
-
+a.shape == b.shape
+'''
+False
+'''
 
 
 #8. Are you able to add a and b? Why or why not?
+np.add(a,b)
+'''
+ValueError: operands could not be broadcast together with shapes (2,3,5) (5,2,3)
+Tienen que tener la misma forma
+'''
 
 
 
 #9. Transpose b so that it has the same structure of a (i.e. become a 2x3x5 array). Assign the transposed array to varialbe "c".
-
+c = c = np.transpose(b, (1,2,0))
+c.shape == a.shape
+'''
+True
+'''
 
 
 #10. Try to add a and c. Now it should work. Assign the sum to varialbe "d". But why does it work now?
-
+d = np.add(a,c)
+'''
+Al tener la misma forma, se pueden sumar elemento a elemento
+'''
 
 
 #11. Print a and d. Notice the difference and relation of the two array in terms of the values? Explain.
+print(a)
+'''
+[[[0.96937417 0.97774437 0.45299931 0.74408653 0.24553292]
+  [0.48748733 0.02992367 0.38285172 0.90007137 0.93815114]
+  [0.79844051 0.74894665 0.60078667 0.15044194 0.68809614]]
 
+ [[0.81261483 0.13692769 0.63610715 0.19670562 0.04257075]
+  [0.75635792 0.9921996  0.89381309 0.37679424 0.60478684]
+  [0.90199869 0.04903972 0.50594422 0.67837833 0.47586028]]]
+'''
+print(d)
+'''
+[[[1.96937417 1.97774437 1.45299931 1.74408653 1.24553292]
+  [1.48748733 1.02992367 1.38285172 1.90007137 1.93815114]
+  [1.79844051 1.74894665 1.60078667 1.15044194 1.68809614]]
+
+ [[1.81261483 1.13692769 1.63610715 1.19670562 1.04257075]
+  [1.75635792 1.9921996  1.89381309 1.37679424 1.60478684]
+  [1.90199869 1.04903972 1.50594422 1.67837833 1.47586028]]]
+'''
+
+'''
+Al sumar la matriz a a la matriz unidad, añadimos en una unidad cada elemento de la matriz
+'''
 
 
 
 #12. Multiply a and c. Assign the result to e.
-
+e = np.multiply(a,c)
 
 
 #13. Does e equal to a? Why or why not?
+a == e
+a.shape == e.shape
+'''
+True
+'''
+
+'''
+Al multiplicar cada valor de la matriz a por el elemento neutro, obtenemos la misma matriz
+'''
 
 
 
 
 #14. Identify the max, min, and mean values in d. Assign those values to variables "d_max", "d_min", and "d_mean"
+d_max = d.max()
+d_min = d.min()
+d_mean = d.mean()
 
+print("d_max:", d_max)
+print("d_min:", d_min)
+print("d_mean:", d_mean)
+
+'''
+d_max: 1.9921996010530028
+d_min: 1.0299236672853533
+d_mean: 1.572501113326641
+'''
 
 
 
@@ -74,7 +165,14 @@ Assign 100 to the corresponding value(s) in f for d_max in d.
 In the end, f should have only the following values: 0, 25, 50, 75, and 100.
 Note: you don't have to use Numpy in this question.
 """
-
+for x in range(f.shape[0]):
+    for y in range(f.shape[1]):
+        for z in range(f.shape[2]):
+            if d[x][y][z] > d_min and d[x][y][z] < d_mean: f[x][y][z]  = 25
+            if d[x][y][z] > d_mean and d[x][y][z] < d_max: f[x][y][z]  = 75
+            if d[x][y][z] == d_mean: f[x][y][z]  = 50
+            if d[x][y][z] == d_min: f[x][y][z] = 0
+            if d[x][y][z] == d_max: f[x][y][z] = 100
 
 
 
@@ -97,7 +195,31 @@ array([[[ 75.,  75.,  75.,  25.,  75.],
        [[ 25.,  25.,  25.,  25., 100.],
         [ 75.,  75.,  75.,  75.,  75.],
         [ 25.,  75.,   0.,  75.,  75.]]])
+  
 """
+
+print(d)
+'''
+[[[1.96937417 1.97774437 1.45299931 1.74408653 1.24553292]
+  [1.48748733 1.02992367 1.38285172 1.90007137 1.93815114]
+  [1.79844051 1.74894665 1.60078667 1.15044194 1.68809614]]
+
+ [[1.81261483 1.13692769 1.63610715 1.19670562 1.04257075]
+  [1.75635792 1.9921996  1.89381309 1.37679424 1.60478684]
+  [1.90199869 1.04903972 1.50594422 1.67837833 1.47586028]]]
+'''
+
+print(f)
+'''
+[[[ 75.  75.  25.  75.  25.]
+  [ 25.   0.  25.  75.  75.]
+  [ 75.  75.  75.  25.  75.]]
+
+ [[ 75.  25.  75.  25.  25.]
+  [ 75. 100.  75.  25.  75.]
+  [ 75.  25.  25.  75.  25.]]]
+'''
+
 
 
 """
@@ -112,3 +234,24 @@ array([[[ 'D',  'D',  'D',  'B',  'D'],
         [ 'B',  'D',   'A',  'D', 'D']]])
 Again, you don't need Numpy in this question.
 """
+
+f = f.astype('str')
+for x in range(f.shape[0]):
+    for y in range(f.shape[1]):
+        for z in range(f.shape[2]):
+            if d[x][y][z] > d_min and d[x][y][z] < d_mean: f[x][y][z]  = np.str_('B')
+            if d[x][y][z] > d_mean and d[x][y][z] < d_max: f[x][y][z]  = np.str_('D')
+            if d[x][y][z] == d_mean: f[x][y][z]  = np.str_('C')
+            if d[x][y][z] == d_min: f[x][y][z] = np.str_('A')
+            if d[x][y][z] == d_max: f[x][y][z] = np.str_('E')
+                
+print(f)
+'''
+[[['D' 'D' 'B' 'D' 'B']
+  ['B' 'A' 'B' 'D' 'D']
+  ['D' 'D' 'D' 'B' 'D']]
+
+ [['D' 'B' 'D' 'B' 'B']
+  ['D' 'E' 'D' 'B' 'D']
+  ['D' 'B' 'B' 'D' 'B']]]
+'''
