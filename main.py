@@ -1,67 +1,78 @@
 #1. Import the NUMPY package under the name np.
-
+import numpy as np
 
 
 #2. Print the NUMPY version and the configuration.
-
+print(np.__version__)
+np.show_config()
 
 
 #3. Generate a 2x3x5 3-dimensional array with random values. Assign the array to variable "a"
 # Challenge: there are at least three easy ways that use numpy to generate random arrays. How many ways can you find?
-
+a = np.random.random((2,3,5))
 
 
 #4. Print a.
-
+a
 
 
 #5. Create a 5x2x3 3-dimensional array with all values equaling 1.
 #Assign the array to variable "b"
-
+b = np.ones((5,2,3))
 
 
 #6. Print b.
-
+b
 
 
 #7. Do a and b have the same size? How do you prove that in Python code?
-
+a.size == b.size
 
 
 
 #8. Are you able to add a and b? Why or why not?
-
+np.add(a,b)
+pass
+#No permite sumar matrices de dimensiones diferentes
 
 
 #9. Transpose b so that it has the same structure of a (i.e. become a 2x3x5 array). Assign the transposed array to varialbe "c".
-
+c = np.transpose(b,(1,2,0))
 
 
 #10. Try to add a and c. Now it should work. Assign the sum to varialbe "d". But why does it work now?
-
+d = np.add(a,c)
 
 
 #11. Print a and d. Notice the difference and relation of the two array in terms of the values? Explain.
-
+print(a)
+print(d)
+#Hemos sumado 1.0 a cada elemento de la matriz a y lo hemos guardado en la matriz d
 
 
 
 #12. Multiply a and c. Assign the result to e.
-
+e = np.multiply(a,c)
+e
 
 
 #13. Does e equal to a? Why or why not?
-
+a == e
 
 
 
 #14. Identify the max, min, and mean values in d. Assign those values to variables "d_max", "d_min", and "d_mean"
+d_max = d.max()
+d_min = d.min()
+d_mean = d.mean()
 
-
+print (d_max)
+print (d_min)
+print (d_mean)
 
 
 #15. Now we want to label the values in d. First create an empty array "f" with the same shape (i.e. 2x3x5) as d using `np.empty`.
-
+f = np.empty((2,3,5))
 
 
 
@@ -74,7 +85,35 @@ Assign 100 to the corresponding value(s) in f for d_max in d.
 In the end, f should have only the following values: 0, 25, 50, 75, and 100.
 Note: you don't have to use Numpy in this question.
 """
+np.set_printoptions(formatter={"float": lambda x:"%0.6f"%(x)})
 
+print ("d max: ",d_max)
+print ("d min: ",d_min)
+print ("d mean: ",d_mean)
+
+indice = 0
+filas = 0
+columnas = 0
+
+for i in d:
+    for j in i:
+        for k in j:
+            if k > d_min and k < d_mean:
+                f[indice][filas][columnas] = 25
+            elif k > d_mean and k < d_max:
+                f[indice][filas][columnas] = 75
+            elif k == d_mean:
+                f[indice][filas][columnas] = 50
+            elif k == d_min:
+                f[indice][filas][columnas] = 0
+            elif k == d_max:
+                f[indice][filas][columnas] = 100
+            columnas +=1
+        filas +=1
+        columnas = 0
+    indice +=1
+    filas = 0
+    columnas = 0
 
 
 
@@ -98,7 +137,12 @@ array([[[ 75.,  75.,  75.,  25.,  75.],
         [ 75.,  75.,  75.,  75.,  75.],
         [ 25.,  75.,   0.,  75.,  75.]]])
 """
+print("d:")
+print(d)
+print("f:")
+print(f)
 
+#Si.
 
 """
 #18. Bonus question: instead of using numbers (i.e. 0, 25, 50, 75, and 100), how to use string values 
@@ -112,3 +156,33 @@ array([[[ 'D',  'D',  'D',  'B',  'D'],
         [ 'B',  'D',   'A',  'D', 'D']]])
 Again, you don't need Numpy in this question.
 """
+indice = []
+filas = []
+columnas = []
+
+for i in d:
+    for j in i:
+        for k in j:
+            if k > d_min and k < d_mean:
+                columnas.append("B")
+            elif k > d_mean and k < d_max:
+                columnas.append("D")
+            elif k == d_mean:
+                columnas.append("C")
+            elif k == d_min:
+                columnas.append("A")
+            elif k == d_max:
+                columnas.append("E")
+        filas.append(columnas)
+        columnas = []
+    indice.append(filas)
+    filas = []
+    columnas = []
+    
+print("d:")
+print(d)
+print("f:")
+print(f)
+print()
+print("array con letras:")
+print(indice)
