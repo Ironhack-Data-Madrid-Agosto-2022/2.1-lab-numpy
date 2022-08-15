@@ -224,6 +224,19 @@ array([[[ 75.,  75.,  75.,  25.,  75.],
 """
 #18. Bonus question: instead of using numbers (i.e. 0, 25, 50, 75, and 100), how to use string values 
 ("A", "B", "C", "D", and "E") to label the array elements? You are expecting the result to be:
+    
+    '' 'nada necesita algo mas, como convertirlo a lista ppero haciendo pruebas no lo consigo por que no acepta strings , solo floats, pero tiene que haber la manera'''
+    d4 = d3
+for i in d3:
+        list((i [(i > d_min) & (i < d_mean )])) == 'B'
+        list((i [(i > d_mean) & (i < d_max)])) == 'D'
+        list(i [i == d_mean]) == 'C'
+        list(i [i == d_min]) =='A'
+        list(i [i == d_max]) == 'E'
+
+list(d4)
+    
+    
 array([[[ 'D',  'D',  'D',  'B',  'D'],
         [ 'D',  'D',  'B',  'B',  'B'],
         [ 'D',  'B',  'D',  'D',  'D']],
