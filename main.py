@@ -255,3 +255,47 @@ print(f)
   ['D' 'E' 'D' 'B' 'D']
   ['D' 'B' 'B' 'D' 'B']]]
 '''
+
+
+
+'''
+------------------------------------- KATAS ------------------------------------
+'''
+
+def color_probability(color, texture):
+    #FORMULA DE BAYES PARA PROBABILIAD CONDICIONADA
+    if texture == 'bumpy':
+        if color == 'red': a = (4/7)
+        if color == 'yellow': a = (2/7)
+        if color == 'green': a = (1/7)
+    if texture == 'smooth':
+        if color == 'red': a = (1/3)
+        if color == 'yellow': a = (1/3)
+        if color == 'green': a = (1/3)
+    return str(a)[:4]
+
+def insert_dash(num):
+    result_str = str(num)
+    num_str = str(num)
+    x = 0
+    while(x < len(num_str) - 1):
+        if int(num_str[x])%2 ==1 and int(num_str[x + 1])%2 ==1:
+            result_str = (result_str[:x + 1] + '-' + result_str[x + 1:])
+            num_str = result_str
+            x += 1
+        x += 1
+    return result_str
+
+def weird_mul(A, B):
+    mat=[]
+    if (A.shape == (0,0) or B.shape == (0,0)): 
+        return None
+    for x in range(A.shape[0]):
+        for y in range(A.shape[1]):
+            sol = A[x][y]*B 
+            mat.append(sol.flatten())
+    return np.array(mat)
+
+'''
+Esta ultima no esta bien, (no me ha dado tiempo a analizar bien el enunciado)
+'''
