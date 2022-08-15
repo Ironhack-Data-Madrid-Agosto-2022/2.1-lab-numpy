@@ -1,62 +1,67 @@
 #1. Import the NUMPY package under the name np.
-
+import numpy as np
 
 
 #2. Print the NUMPY version and the configuration.
-
+np.__version__
+np.show_config()
 
 
 #3. Generate a 2x3x5 3-dimensional array with random values. Assign the array to variable "a"
 # Challenge: there are at least three easy ways that use numpy to generate random arrays. How many ways can you find?
-
+a = np.random.random((2,3,5))
 
 
 #4. Print a.
-
+print(a)
 
 
 #5. Create a 5x2x3 3-dimensional array with all values equaling 1.
 #Assign the array to variable "b"
-
+b = np.ones((5,2,3))
 
 
 #6. Print b.
+print(b)
 
 
-
-#7. Do a and b have the same size? How do you prove that in Python code?
-
-
+#7.Do a and b have the same size? How do you prove that in Python code?
+if a.size == b.size:
+    print(True)
+else:
+    print(False)
 
 
 #8. Are you able to add a and b? Why or why not?
-
+#No se pueden sumar arrays de distinta dimension. 
 
 
 #9. Transpose b so that it has the same structure of a (i.e. become a 2x3x5 array). Assign the transposed array to varialbe "c".
-
-
+c = np.transpose(b,(1,2,0))
 
 #10. Try to add a and c. Now it should work. Assign the sum to varialbe "d". But why does it work now?
-
-
+d = a + c
+#ahora funciona porque tienen la misma dimension
 
 #11. Print a and d. Notice the difference and relation of the two array in terms of the values? Explain.
-
+print(a)
+print(d)
+#la matriz d es la matriz a + b, por tanto, la matriz de esta formada por los elementos de la matriz a más 1 (d_111 = a_111 + 1)
 
 
 
 #12. Multiply a and c. Assign the result to e.
-
+e = a * c
 
 
 #13. Does e equal to a? Why or why not?
-
-
+#e is equal to a because in e = a * c, c is the neutral element of the tensor, so we have that e = a * c = c * a = a.
 
 
 #14. Identify the max, min, and mean values in d. Assign those values to variables "d_max", "d_min", and "d_mean"
-
+d_max = np.max(d)
+d_min = np.min(d)
+d_mean = np.mean(d)
 
 
 
@@ -74,6 +79,21 @@ Assign 100 to the corresponding value(s) in f for d_max in d.
 In the end, f should have only the following values: 0, 25, 50, 75, and 100.
 Note: you don't have to use Numpy in this question.
 """
+f = np.empty((2,3,5))
+
+for i in range(d.shape[0]):
+    for j in range(d.shape[1]):
+        for k in range(d.shape[2]):
+            if d[i][j][k] > d_min and d[i][j][k] < d_mean:
+                f[i][j][k] = 25
+            elif d[i][j][k] > d_mean and d[i][j][k] < d_max:
+                f[i][j][k] = 75
+            elif  d[i][j][k] == d_mean:
+                f[i][j][k] = 50
+            elif d[i][j][k] == d_min:
+                f[i][j][k] = 0
+            elif d[i][j][k] == d_max:
+                f[i][j][k] = 100
 
 
 
@@ -98,7 +118,8 @@ array([[[ 75.,  75.,  75.,  25.,  75.],
         [ 75.,  75.,  75.,  75.,  75.],
         [ 25.,  75.,   0.,  75.,  75.]]])
 """
-
+print(d)
+print(f)
 
 """
 #18. Bonus question: instead of using numbers (i.e. 0, 25, 50, 75, and 100), how to use string values 
@@ -112,3 +133,20 @@ array([[[ 'D',  'D',  'D',  'B',  'D'],
         [ 'B',  'D',   'A',  'D', 'D']]])
 Again, you don't need Numpy in this question.
 """
+x = [[["" for i in range(5)]for j in range(3)]for k in range(2)]
+
+for i in range(2):
+    for j in range(3):
+        for k in range(5):
+            if d[i][j][k] > d_min and d[i][j][k] < d_mean:
+                x[i][j][k] = 'B'
+            elif d[i][j][k] > d_mean and d[i][j][k] < d_max:
+                x[i][j][k] ='D'
+            elif  d[i][j][k] == d_mean:
+                x[i][j][k] = 'C'
+            elif d[i][j][k] == d_min:
+                x[i][j][k] = 'A'
+            elif d[i][j][k] == d_max:
+                x[i][j][k] = 'E'
+x = np.array(x)
+print(x)
