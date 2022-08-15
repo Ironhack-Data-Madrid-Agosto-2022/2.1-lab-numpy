@@ -113,6 +113,33 @@ Nota: no tienes que usar Numpy en esta pregunta.
 
 
 
+a=0
+b=0
+c=0
+
+for x in d:
+    for y in x:
+        for z in y:
+            if z>d_min and z<d_mean:
+                f[a][b][c]=25
+            if z>d_mean and z<d_max:
+                f[a][b][c]=75
+            if z==d_mean:
+                f[a][b][c]=50
+            if z==d_min:
+                f[a][b][c]=0
+            if z==d_max:
+                f[a][b][c]=100
+            
+            c+=1
+        c=0
+        b+=1
+    b=0
+    a+=1  
+
+print(f)
+
+
 
 """
 #17. Print d and f. Do you have your expected f?
@@ -134,7 +161,7 @@ array([[[ 75.,  75.,  75.,  25.,  75.],
         [ 75.,  75.,  75.,  75.,  75.],
         [ 25.,  75.,   0.,  75.,  75.]]])
 """
-
+print(f)
 
 """
 #18. Bonus question: instead of using numbers (i.e. 0, 25, 50, 75, and 100), how to use string values 
