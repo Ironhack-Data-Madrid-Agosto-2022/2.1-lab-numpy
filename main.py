@@ -166,17 +166,34 @@ Assign 100 to the corresponding value(s) in f for d_max in d.
 In the end, f should have only the following values: 0, 25, 50, 75, and 100.
 Note: you don't have to use Numpy in this question.
     
-    f=[]
-for i in f:
+    '''he traido la lista por que si no me coinciden es porque recoge otra, donde el max es 100, deberia ponerse y no lo hace'''
     
-    (d [(d > d_mean) & (d < d_max)]) = 75
-    ( d [(d > d_min) & (d < d_mean )]) = 25
-    (a [ a == d_mean]) = 50
-    (f [])
+    d3=([[[1.85836099, 1.67064465, 1.62576044, 1.40243961, 1.88454931],
+        [1.75354326, 1.69403643, 1.36729252, 1.61415071, 1.12104981],
+        [1.72201435, 1.1862918 , 1.87078449, 1.7726778 , 1.88180042]],
+
+       [[1.44747908, 1.31673383, 1.02000951, 1.52218947, 1.97066381],
+        [1.79129243, 1.74983003, 1.96028037, 1.85166831, 1.65450881],
+        [1.18068344, 1.9587381 , 1.00656599, 1.93402165, 1.73514584]]])
+    
+d3 = f
+for i in d3:
+        (i [(i > d_min) & (i < d_mean )]) = 25
+        (i [(i > d_mean) & (i < d_max)]) = 75
+        (i [i == d_mean]) = 50
+        (i [i == d_min]) = 0
+        (i [i == d_max]) = 100
     
 """
+esto es lo mas cerca que consigo despues de 1 hora, literal. no consigo que acepte el numero max sea = a 100. Le da el valor a otro numero"
 
+array([[[ 75.,  75.,  75.,  75.,  75.],
+        [ 75.,  75.,  25.,  25.,  25.],
+        [ 25.,  25.,  25.,  75.,  75.]],
 
+       [[ 75.,  25.,  25.,  25.,  25.],
+        [100.,  75.,   0.,  75.,  75.],
+        [ 75.,  75.,  25.,  75.,  75.]]])
 
 
 """
@@ -198,6 +215,9 @@ array([[[ 75.,  75.,  75.,  25.,  75.],
        [[ 25.,  25.,  25.,  25., 100.],
         [ 75.,  75.,  75.,  75.,  75.],
         [ 25.,  75.,   0.,  75.,  75.]]])
+
+
+
 """
 
 
